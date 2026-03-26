@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+:root {
+  --ice-space: #0a0b14;
+  --ice-text: #f8fafc;
+  --ice-muted: #94a3b8;
+  --ice-pink: #ff6b9d;
+  --ice-purple: #c084fc;
+  --ice-mint: #4ade80;
+  --ice-yellow: #facc15;
+  --ice-coral: #fb923c;
+  --ice-sky: #38bdf8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--ice-space);
+  color: var(--ice-text);
+  overflow-x: hidden;
+  font-family: var(--font-inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto);
+}
+
+::selection {
+  background: rgba(255, 107, 157, 0.35);
+}
+
+/* Living radial gradient mesh behind all content */
+.ice-mesh {
+  position: fixed;
+  inset: -40vmax;
+  z-index: -2;
+  pointer-events: none;
+  opacity: 1;
+  filter: saturate(1.12);
+  background-image:
+    radial-gradient(circle at 18% 15%, rgba(255, 107, 157, 0.1), transparent 55%),
+    radial-gradient(circle at 72% 22%, rgba(192, 132, 252, 0.1), transparent 58%),
+    radial-gradient(circle at 52% 82%, rgba(74, 222, 128, 0.1), transparent 60%),
+    radial-gradient(circle at 10% 78%, rgba(56, 189, 248, 0.1), transparent 60%);
+  animation: iceMeshShift 18s ease-in-out infinite alternate;
+}
+
+@keyframes iceMeshShift {
+  0% {
+    background-image:
+      radial-gradient(circle at 18% 15%, rgba(255, 107, 157, 0.1), transparent 55%),
+      radial-gradient(circle at 72% 22%, rgba(192, 132, 252, 0.1), transparent 58%),
+      radial-gradient(circle at 52% 82%, rgba(74, 222, 128, 0.1), transparent 60%),
+      radial-gradient(circle at 10% 78%, rgba(56, 189, 248, 0.1), transparent 60%);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    background-image:
+      radial-gradient(circle at 20% 18%, rgba(192, 132, 252, 0.1), transparent 55%),
+      radial-gradient(circle at 78% 26%, rgba(255, 107, 157, 0.1), transparent 58%),
+      radial-gradient(circle at 45% 86%, rgba(251, 146, 60, 0.1), transparent 60%),
+      radial-gradient(circle at 15% 72%, rgba(56, 189, 248, 0.1), transparent 60%);
+    transform: translate3d(-1.5%, 0.8%, 0) scale(1.03);
+  }
+  66% {
+    background-image:
+      radial-gradient(circle at 14% 22%, rgba(74, 222, 128, 0.1), transparent 55%),
+      radial-gradient(circle at 76% 18%, rgba(56, 189, 248, 0.1), transparent 58%),
+      radial-gradient(circle at 52% 80%, rgba(192, 132, 252, 0.1), transparent 60%),
+      radial-gradient(circle at 86% 70%, rgba(250, 204, 21, 0.1), transparent 60%);
+    transform: translate3d(1.2%, -1.0%, 0) scale(1.02);
+  }
+  100% {
+    background-image:
+      radial-gradient(circle at 18% 15%, rgba(255, 107, 157, 0.1), transparent 55%),
+      radial-gradient(circle at 72% 22%, rgba(192, 132, 252, 0.1), transparent 58%),
+      radial-gradient(circle at 52% 82%, rgba(74, 222, 128, 0.1), transparent 60%),
+      radial-gradient(circle at 10% 78%, rgba(56, 189, 248, 0.1), transparent 60%);
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+/* Cursor glow (updated in JS via CSS vars) */
+.cursor-glow {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(
+    520px circle at var(--cursor-x, 50%) var(--cursor-y, 20%),
+    rgba(255, 107, 157, 0.14),
+    transparent 60%
+  );
+  mix-blend-mode: screen;
+  opacity: 0.9;
+}
+
+/* Small utility animations */
+@keyframes iceSpinSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ice-animate-spin-slow {
+  animation: iceSpinSlow 6s linear infinite;
+}
+
+@keyframes iceHeroBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.ice-animate-bob {
+  animation: iceHeroBob 6.5s ease-in-out infinite;
+}
